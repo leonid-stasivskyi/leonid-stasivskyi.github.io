@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product & UI Design Collection | Leonid Stasivskyi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Scoped specifically for WordPress embedding */
+.leonid-ui-gallery,
+.leonid-ui-gallery * {
+  box-sizing: border-box;
+}
+
+.leonid-ui-gallery {
+  --bg: #fff;
+  --text: #111;
+  --muted: #666;
+  --border: #e8e8e8;
+  --soft: #f7f7f5;
+  --accent: #059669;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.leonid-ui-gallery h1,
+.leonid-ui-gallery h2,
+.leonid-ui-gallery h3,
+.leonid-ui-gallery p {
+  margin: 0;
+  padding: 0;
+}
+
+.leonid-ui-gallery a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.leonid-ui-gallery img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.leonid-ui-gallery .lug-shell {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0 96px;
+}
+
+
+.leonid-ui-gallery .lug-site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 88px;
+}
+
+.leonid-ui-gallery .lug-logo {
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  font-weight: 600;
+}
+
+.leonid-ui-gallery .lug-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid #111;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.leonid-ui-gallery .lug-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.leonid-ui-gallery .lug-hero {
+  max-width: 850px;
+  margin-bottom: 72px;
+}
+
+.leonid-ui-gallery .lug-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.leonid-ui-gallery .lug-title {
+  max-width: 850px;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  font-weight: 600;
+}
+
+.leonid-ui-gallery .lug-intro {
+  max-width: 720px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.55;
+}
+
+.leonid-ui-gallery .lug-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.leonid-ui-gallery .lug-filter {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.leonid-ui-gallery .lug-filter:hover,
+.leonid-ui-gallery .lug-filter.is-active {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+.leonid-ui-gallery .lug-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px 24px;
+}
+
+.leonid-ui-gallery .lug-card,
+.leonid-ui-gallery .lug-card--wide,
+.leonid-ui-gallery .lug-card--small,
+.leonid-ui-gallery .lug-card--large {
+  grid-column: auto;
+  min-width: 0;
+}
+
+.leonid-ui-gallery .lug-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 8 / 5;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--soft);
+}
+
+
+.leonid-ui-gallery .lug-media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.leonid-ui-gallery .lug-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  color: #8a8a8a;
+  font-size: 14px;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.9), rgba(244,244,242,.9));
+}
+
+.leonid-ui-gallery .lug-meta {
+  padding-top: 18px;
+}
+
+.leonid-ui-gallery .lug-project-title {
+  font-size: 21px;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  font-weight: 600;
+}
+
+.leonid-ui-gallery .lug-tags {
+  margin-top: 7px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.leonid-ui-gallery .lug-desc {
+  max-width: 620px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.leonid-ui-gallery .lug-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #bbb;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.leonid-ui-gallery .lug-card[hidden] {
+  display: none !important;
+}
+
+.leonid-ui-gallery .lug-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 100px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+@media (max-width: 768px) {
+  .leonid-ui-gallery .lug-site-header {
+    margin-bottom: 56px;
+  }
+
+  .leonid-ui-gallery .lug-logo {
+    font-size: 16px;
+  }
+
+  .leonid-ui-gallery .lug-back {
+    font-size: 14px;
+  }
+
+  .leonid-ui-gallery .lug-shell {
+    width: min(100% - 32px, 1200px);
+    padding: 40px 0 64px;
+  }
+
+  
+.leonid-ui-gallery .lug-site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 88px;
+}
+
+.leonid-ui-gallery .lug-logo {
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  font-weight: 600;
+}
+
+.leonid-ui-gallery .lug-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid #111;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.leonid-ui-gallery .lug-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.leonid-ui-gallery .lug-hero {
+    margin-bottom: 48px;
+  }
+
+  .leonid-ui-gallery .lug-title {
+    font-size: clamp(38px, 12vw, 54px);
+  }
+
+  .leonid-ui-gallery .lug-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .leonid-ui-gallery .lug-media,
+  .leonid-ui-gallery .lug-card--wide .lug-media {
+    aspect-ratio: 8 / 5;
+    border-radius: 16px;
+  }
+
+  .leonid-ui-gallery .lug-footer {
+    flex-direction: column;
+    margin-top: 64px;
+  }
+}
+</style>
+</head>
+<body style="margin:0;background:#fff;">
+<section class="leonid-ui-gallery">
+  <div class="lug-shell">
+
+    <nav class="lug-site-header" aria-label="Portfolio navigation">
+      <a class="lug-logo" href="index.html">Leonid Stasivskyi</a>
+      <a class="lug-back" href="index.html">← Back to Portfolio</a>
+    </nav>
+
+    <header class="lug-hero">
+      <span class="lug-eyebrow">Selected visual work</span>
+      <h1 class="lug-title">Product &amp; UI Design Collection</h1>
+      <p class="lug-intro">A curated selection of mobile apps, SaaS interfaces, dashboards, websites, and design systems across different products and industries.</p>
+
+      <div class="lug-filters" aria-label="Project filters">
+        <button class="lug-filter is-active" type="button" data-filter="all">All</button>
+        <button class="lug-filter" type="button" data-filter="mobile">Mobile</button>
+        <button class="lug-filter" type="button" data-filter="saas">SaaS</button>
+        <button class="lug-filter" type="button" data-filter="web">Web</button>
+        <button class="lug-filter" type="button" data-filter="systems">Design Systems</button>
+      </div>
+    </header>
+
+    <main class="lug-grid">
+      <article class="lug-card lug-card--large" data-category="mobile">
+        <div class="lug-media">
+          <img src="images/stock-control-mobile-inventory-sales-analytics-app.png" alt="Mobile product design interface collection" loading="lazy">
+        </div>
+        <div class="lug-meta">
+          <h2 class="lug-project-title">Mobile Product Experience</h2>
+          <p class="lug-tags">Mobile · Product Design · iOS / Android</p>
+          <p class="lug-desc">End-to-end mobile interfaces focused on clear hierarchy, intuitive flows, and polished visual execution.</p>
+        </div>
+      </article>
+
+      <article class="lug-card lug-card--small" data-category="saas">
+        <div class="lug-media">
+          <img src="images/saas-analytics.png" alt="B2B SaaS analytics dashboard design" loading="lazy">
+        </div>
+        <div class="lug-meta">
+          <h2 class="lug-project-title">SaaS Analytics</h2>
+          <p class="lug-tags">B2B SaaS · Dashboard · Data UI</p>
+          <p class="lug-desc">Data-heavy interfaces designed to make complex workflows and analytics easier to scan and act on.</p>
+        </div>
+      </article>
+
+      <article class="lug-card lug-card--wide" data-category="web">
+        <div class="lug-media">
+          <img src="images/web-growth-design.png" alt="Web and growth design collection" loading="lazy">
+        </div>
+        <div class="lug-meta">
+          <h2 class="lug-project-title">Web &amp; Growth Design</h2>
+          <p class="lug-tags">Web · Landing Pages · CRO</p>
+          <p class="lug-desc">Conversion-focused web experiences combining visual storytelling, clear information architecture, and measurable business goals.</p>
+        </div>
+      </article>
+
+      <article class="lug-card" data-category="mobile">
+        <div class="lug-media">
+          <img src="images/fintech-mobile-ui.png" alt="Fintech mobile product interface design" loading="lazy">
+        </div>
+        <div class="lug-meta">
+          <h2 class="lug-project-title">Fintech Mobile UI</h2>
+          <p class="lug-tags">Fintech · Mobile · UX/UI</p>
+          <p class="lug-desc">Mobile financial product interfaces designed around focused tasks, reusable patterns, and consistent interaction states.</p>
+        </div>
+      </article>
+
+      <article class="lug-card" data-category="saas">
+        <div class="lug-media">
+          <img src="images/b2b-saas.png" alt="Yaware B2B SaaS product interface" loading="lazy">
+        </div>
+        <div class="lug-meta">
+          <h2 class="lug-project-title">Enterprise Management Platform</h2>
+          <p class="lug-tags">B2B · ERP · Complex Workflows</p>
+          <p class="lug-desc">Onboarding and core workflow redesign for a B2B time-tracking platform, focused on faster activation and time-to-value.</p>
+        </div>
+      </article>
+
+      <article class="lug-card lug-card--wide" data-category="systems">
+        <div class="lug-media">
+          <img src="images/design-systems.png" alt="Design system components variables and tokens" loading="lazy">
+        </div>
+        <div class="lug-meta">
+          <h2 class="lug-project-title">Design Systems</h2>
+          <p class="lug-tags">Components · Variables · Tokens · Figma</p>
+          <p class="lug-desc">Redesigned complex enterprise workflows and data-heavy interfaces to improve usability, information hierarchy, and consistency across the platform.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="lug-footer">
+      <span>Leonid Stasivskyi · Product Designer</span>
+      <span>Berlin · Available for full-time roles</span>
+    </footer>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const root = document.querySelector('.leonid-ui-gallery');
+  if (!root) return;
+
+  const filters = root.querySelectorAll('.lug-filter');
+  const cards = root.querySelectorAll('.lug-card');
+
+  filters.forEach(function (button) {
+    button.addEventListener('click', function () {
+      const filter = button.getAttribute('data-filter');
+
+      filters.forEach(function (item) {
+        item.classList.toggle('is-active', item === button);
+      });
+
+      cards.forEach(function (card) {
+        const matches = filter === 'all' || card.getAttribute('data-category') === filter;
+        card.hidden = !matches;
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

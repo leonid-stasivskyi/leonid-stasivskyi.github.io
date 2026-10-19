@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaware Case Study: Onboarding | Leonid Stasivskyi</title>
+    
+    <!-- Google Fonts: Inter (Согласно дизайн-системе) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset & System Variables */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-bg: #FFFFFF;
+            --color-text-main: #111111;
+            --color-text-muted: #666666;
+            --color-accent: #059669;
+            --color-border: #E5E5E5;
+            --color-card-bg: #FAF9F8;
+            
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --max-width: 1200px;
+        }
+
+        html {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-family);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 5rem 1.5rem;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        /* Header Layout (Отступ 5rem) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .logo {
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .back-link {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--color-text-main);
+            border-bottom: 1.5px solid var(--color-text-main);
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-bottom: 5rem;
+            max-width: 1000px;
+        }
+
+        .case-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-main);
+        }
+
+        .lead-text {
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            font-weight: 400;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        /* Meta Table */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 6rem;
+            padding: 2rem 0;
+            gap: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-text-main);
+        }
+
+        /* Metrics Banner & Dot Indicators */
+        .metrics-banner {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 8rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .metric-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-number {
+            font-size: clamp(3rem, 4.5vw, 4rem);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--color-accent);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+
+        .metric-label {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+        }
+
+        /* Content Sections (Отступ 8rem) */
+        .content-block {
+            margin-bottom: 8rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-text-main);
+        }
+
+        .section-num {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Vertical Steps Pipeline Gallery */
+        .steps-pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .step-row {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+
+        .step-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .step-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .step-badge::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--color-accent);
+        }
+
+        .step-info strong {
+            font-size: 1.25rem;
+            color: var(--color-text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .step-info p {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .step-media {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+            background-color: #ffffff;
+        }
+
+        .step-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        @media (max-width: 900px) {
+            .step-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Data Cards */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .data-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .data-val {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-main);
+        }
+
+        .data-desc {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .data-source {
+            font-size: 0.75rem;
+            text-transform: none;
+            letter-spacing: 0.02em;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border);
+            padding-top: 0.75rem;
+        }
+
+        /* Insight Box */
+        .insight-box {
+            border-left: 2px solid var(--color-accent);
+            padding: 1.25rem 1.5rem;
+            background-color: var(--color-card-bg);
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 3rem;
+            font-size: 1.0625rem;
+            color: var(--color-text-main);
+            line-height: 1.5;
+        }
+
+        /* Persona Grid */
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .persona-card {
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: var(--color-bg);
+        }
+
+        .persona-header {
+            background-color: var(--color-card-bg);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .persona-name {
+            font-weight: 600;
+            font-size: 1.0625rem;
+        }
+
+        .persona-role {
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+        }
+
+        .persona-body {
+            padding: 1.5rem;
+        }
+
+        .persona-field {
+            margin-bottom: 1.25rem;
+        }
+
+        .persona-field-title {
+            font-size: 0.75rem;
+            text-transform: none;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .persona-field p {
+            font-size: 0.9375rem;
+            color: var(--color-text-main);
+        }
+
+        .persona-quote {
+            font-style: normal;
+            font-size: 1rem;
+            color: var(--color-text-main);
+            border-left: 3px solid var(--color-accent);
+            padding-left: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        /* Comparison Rows */
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comp-side {
+            padding: 1.75rem;
+        }
+
+        .comp-side.problem {
+            background-color: var(--color-card-bg);
+            border-right: 1px solid var(--color-border);
+        }
+
+        .comp-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .comp-tag.solution {
+            color: var(--color-accent);
+        }
+
+        .comp-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-main);
+        }
+
+        .comp-side p {
+            font-size: 0.9375rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Pill Shape CTA Button (Согласно п. 5.1 и 7.4 гайда) */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-main);
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 9999px;
+            padding: 0.625rem 1.25rem;
+            margin-top: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cta:hover {
+            border-color: var(--color-text-main);
+            background-color: #F3F3F3;
+            color: var(--color-text-main);
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        footer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-block h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-block a, 
+        .footer-block span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--color-text-main);
+        }
+
+        .footer-block a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Problem / Hypothesis / Flow / Impact additions */
+        .problem-grid, .segment-grid, .impact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; margin-top:2rem; }
+        .problem-card, .segment-card, .impact-card { border:1px solid var(--color-border); border-radius:16px; padding:1.75rem; background:var(--color-card-bg); }
+        .eyebrow { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--color-accent); margin-bottom:.6rem; }
+        .problem-card h3, .segment-card h3 { font-size:1.1rem; margin-bottom:.5rem; }
+        .problem-card p, .segment-card p { font-size:.9375rem; color:var(--color-text-muted); }
+        .hypothesis-box { border:1px solid var(--color-border); border-radius:20px; padding:2rem; background:#111; color:#fff; margin-top:2rem; }
+        .hypothesis-box .eyebrow { color:#86efac; }
+        .hypothesis-box p { font-size:clamp(1.15rem,2vw,1.45rem); line-height:1.45; max-width:900px; }
+        .flow-strip { display:grid; grid-template-columns:repeat(5,1fr); gap:.75rem; margin-top:2rem; align-items:stretch; }
+        .flow-node { border:1px solid var(--color-border); border-radius:14px; padding:1.15rem; background:#fff; font-weight:600; font-size:.9rem; text-align:center; position:relative; }
+        .flow-node:not(:last-child)::after { content:'→'; position:absolute; left:calc(100% + .375rem); top:50%; transform:translate(-50%, -50%); color:var(--color-text-muted); z-index:3; width:.75rem; text-align:center; line-height:1; background:var(--color-bg); }
+        .iteration-note { margin-top:1rem; font-weight:600; color:var(--color-accent); }
+        .impact-card .impact-before { font-size:.8rem; color:var(--color-text-muted); margin-bottom:.25rem; }
+        .impact-card .impact-number { font-size:2.5rem; font-weight:600; letter-spacing:-.03em; color:var(--color-accent); line-height:1.05; }
+        .impact-card .impact-title { font-weight:600; margin-top:.6rem; }
+        .impact-card p { color:var(--color-text-muted); font-size:.9rem; margin-top:.35rem; }
+        .final-gallery { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin:2.5rem 0; }
+        .final-gallery img { width:100%; display:block; border:1px solid var(--color-border); border-radius:16px; background:#fff; }
+        .prototype-label { margin-top:2.5rem; margin-bottom:1rem; font-size:.85rem; font-weight:600; color:var(--color-text-muted); }
+        @media(max-width:768px){ .flow-strip{grid-template-columns:1fr;} .flow-node:not(:last-child)::after{content:'↓'; left:50%; top:calc(100% + .375rem); transform:translate(-50%, -50%); width:.75rem; background:var(--color-bg);} .final-gallery{grid-template-columns:1fr;} }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">Leonid Stasivskyi</div>
+        <a href="index.html" class="back-link">&larr; Back to Portfolio</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="case-tag">Case Study &middot; B2B SaaS</span>
+        <h1>Yaware TimeTracker:<br>Reducing Time-to-Value by 65%</h1>
+        <p class="lead-text">Redesigned onboarding for a B2B time-tracking SaaS to reduce activation friction and improve trial-to-paid conversion.</p>
+    </section>
+
+    <!-- Meta Data Grid -->
+    <div class="meta-grid">
+        <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">Product Designer</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Product</span>
+            <span class="meta-value">B2B SaaS · Time Tracking</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Scope</span>
+            <span class="meta-value">Research · UX · UI · Testing</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Focus Area</span>
+            <span class="meta-value">Activation · Time-to-Value</span>
+        </div>
+    </div>
+
+    <!-- Impact Metrics Banner -->
+    <div class="metrics-banner">
+        <div class="metric-card">
+            <div class="metric-number">-65%</div>
+            <div class="metric-label">Time-to-Value in Onboarding Flow</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-number">+18%</div>
+            <div class="metric-label">Trial-to-Paid Conversion Growth</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-number">-21%</div>
+            <div class="metric-label">Dead Clicks &amp; Frustration Actions</div>
+        </div>
+    </div>
+
+    <section class="content-block">
+        <h2 class="section-title"><span class="section-num">01</span> The Problem: Users Reached Complexity Before Value</h2>
+        <p class="lead-text">New users entered a feature-dense product before understanding the first action that would make Yaware useful to them. The result was slow activation, navigation friction, and weak trial momentum.</p>
+        <div class="problem-grid">
+            <div class="problem-card"><div class="eyebrow">01 · Starting point</div><h3>No clear first action</h3><p>Users landed in a complex workspace before understanding what to do first or where the core tracking action lived.</p></div>
+            <div class="problem-card"><div class="eyebrow">02 · Hierarchy</div><h3>Too many competing actions</h3><p>Primary activation actions competed with secondary navigation, settings, and product configuration.</p></div>
+            <div class="problem-card"><div class="eyebrow">03 · User intent</div><h3>One flow for different goals</h3><p>Team managers and individual users were pushed through the same setup despite fundamentally different jobs-to-be-done.</p></div>
+        </div>
+    </section>
+
+    <!-- Section 2: Discovery -->
+    <section class="content-block">
+        <h2 class="section-title"><span class="section-num">02</span> Discovery: What the Data Revealed</h2>
+        <p class="lead-text">We didn't rely on assumptions. Heatmap analysis via Microsoft Clarity and qualitative interviews with the sales department exposed exact friction points during first-time sessions.</p>
+        
+        <div class="data-grid">
+            <div class="data-card">
+                <div>
+                    <div class="data-val">11+ min</div>
+                    <div class="data-desc"><b>Average session</b> length required for a new user to start their very first time-tracking action.</div>
+                </div>
+                <div class="data-source">Clarity &middot; Session Analytics</div>
+            </div>
+
+            <div class="data-card">
+                <div>
+                    <div class="data-val">~34%</div>
+                    <div class="data-desc"><b>Rage clicks</b> on navigation elements caused by an overloaded interface layout.</div>
+                </div>
+                <div class="data-source">Clarity &middot; Heatmap Analysis</div>
+            </div>
+
+            <div class="data-card">
+                <div>
+                    <div class="data-val">7–14%</div>
+                    <div class="data-desc"><b>Monthly churn</b> rate with primary feedback: "Couldn't figure out the initial setup."</div>
+                </div>
+                <div class="data-source">Sales Interviews &middot; Churn Logs</div>
+            </div>
+
+            <div class="data-card">
+                <div>
+                    <div class="data-val">2 Roles</div>
+                    <div class="data-desc"><b>Conflicting needs</b> Managers vs Freelancers — drastically different goals forced into one generic view.</div>
+                </div>
+                <div class="data-source">User Segment Analysis</div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <strong>Key Insight from Sales:</strong> "Often, it isn't the decision-maker setting up the product, but a delegated employee. If they struggle to see immediate value during the trial, they fail to advocate the solution internally."
+        </div>
+    </section>
+
+    <!-- Section 3: Segments & Hypothesis -->
+    <section class="content-block">
+        <h2 class="section-title"><span class="section-num">03</span> User Segments: Different Goals, Shared Friction</h2>
+        <p class="lead-text">Research showed that the onboarding problem was not one generic usability issue. Two primary user groups entered the product with different activation goals.</p>
+        <div class="segment-grid">
+            <div class="segment-card"><div class="eyebrow">Team Manager</div><h3>Set up monitoring and prove value</h3><p>Invite a team, configure tracking, and quickly understand whether productivity data is useful enough to advocate internally.</p></div>
+            <div class="segment-card"><div class="eyebrow">Individual User</div><h3>Start tracking without enterprise setup</h3><p>Begin tracking work immediately, organize billable time, and generate reports without navigating team-oriented configuration.</p></div>
+        </div>
+        <div class="hypothesis-box"><div class="eyebrow">Product Hypothesis</div><p>If we personalize onboarding by user intent and expose the first core action earlier, users will reach initial value faster and complete activation with less friction.</p></div>
+    </section>
+
+    <!-- Section 3: Strategy -->
+    <section class="content-block">
+        <h2 class="section-title"><span class="section-num">04</span> Strategy: Branched Onboarding Architecture</h2>
+        <p class="lead-text">Instead of forcing all users into a generic dashboard, we introduced <strong>Role-Based Branched Onboarding</strong> with an immediate Aha-Moment on Step 1.</p>
+
+        <div class="flow-strip">
+            <div class="flow-node">Sign up</div><div class="flow-node">Select goal</div><div class="flow-node">Personalized setup</div><div class="flow-node">First tracking action</div><div class="flow-node">Dashboard</div>
+        </div>
+
+        <div class="steps-pipeline">
+            
+            <!-- Step 1 -->
+            <div class="step-row">
+                <div class="step-info">
+                    <span class="step-badge">Step 01</span>
+                    <strong>01. Role Selection</strong>
+                    <p>Explicit choice between Team Lead and Individual User right upon entering to personalize the workspace.</p>
+                </div>
+                <div class="step-media">
+                    <img src="images/step1.png" alt="Role Selection Screen UI" />
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-row">
+                <div class="step-info">
+                    <span class="step-badge">Step 02</span>
+                    <strong>02. Guided Setup</strong>
+                    <p>Linear 3-step setup with progress bar that simplifies initial team member invitations and integrations.</p>
+                </div>
+                <div class="step-media">
+                    <img src="images/step2.png" alt="Guided Setup Workflow UI" />
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-row">
+                <div class="step-info">
+                    <span class="step-badge">Step 03</span>
+                    <strong>03. Instant Value</strong>
+                    <p>Direct transition to automated tracking without heavy upfront manual configuration.</p>
+                </div>
+                <div class="step-media">
+                    <img src="images/step3.png" alt="Instant Tracker Action UI" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 4: Prototype & Test -->
+    <section class="content-block">
+        <h2 class="section-title"><span class="section-num">05</span> Validation: Usability Testing &amp; Iterations</h2>
+        <p class="lead-text">Usability testing with 5 active participants revealed critical flaws in our first prototype iterations.</p>
+
+        <!-- Finding 1 -->
+        <div class="comparison-row">
+            <div class="comp-side problem">
+                <span class="comp-tag">Finding 1</span>
+                <div class="comp-title">Role selection was skipped</div>
+                <p><b>4 out of 5 users ignored</b> the role selection dropdown, assuming it was optional marketing metadata rather than an interface trigger.</p>
+            </div>
+            <div class="comp-side">
+                <span class="comp-tag solution">Design Solution</span>
+                <div class="comp-title">Fullscreen Decision Cards</div>
+                <p>Replaced dropdowns with full-width interactive cards highlighting specific use-case scenarios. <b>Skip rate dropped to 0%.</b></p><div class="iteration-note">4/5 skipped → 0/5 skipped</div>
+            </div>
+        </div>
+
+        <!-- Finding 2 -->
+        <div class="comparison-row">
+            <div class="comp-side problem">
+                <span class="comp-tag">Finding 2</span>
+                <div class="comp-title">Hidden primary action</div>
+                <p>Users struggled to locate the primary "<b>Start Tracking</b>" button due to visual noise from secondary navigation links.</p>
+            </div>
+            <div class="comp-side">
+                <span class="comp-tag solution">Design Solution</span>
+                <div class="comp-title">Single Focus CTA</div>
+                <p>Removed 4 secondary navigation links from the initial screen. Left a single focal CTA button. <b>Dead clicks dropped to 6%.</b></p><div class="iteration-note">Visual noise → single-focus activation CTA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Results -->
+    <section class="content-block">
+        <h2 class="section-title"><span class="section-num">06</span> Final Design &amp; Impact</h2>
+        <p class="lead-text">The redesigned onboarding reduced setup friction, clarified the first core action, and moved users to product value faster.</p>
+        <div class="impact-grid">
+            <div class="impact-card"><div class="impact-before">Before: 11+ min to first value</div><div class="impact-number">−65%</div><div class="impact-title">Time-to-Value</div><p>Users reached the first meaningful tracking action substantially faster.</p></div>
+            <div class="impact-card"><div class="impact-before">Business outcome</div><div class="impact-number">+18%</div><div class="impact-title">Trial-to-Paid</div><p>More trial users progressed into paid conversion after the activation redesign.</p></div>
+            <div class="impact-card"><div class="impact-before">Behavioral friction</div><div class="impact-number">−21%</div><div class="impact-title">Dead Clicks &amp; Frustration</div><p>Clearer hierarchy reduced misclicks and navigation uncertainty.</p></div>
+        </div>
+        <div class="insight-box" style="margin-top:2rem;"><strong>What we learned:</strong> Simplifying setup alone was not enough. Personalizing the activation path around user intent and making the first core action unmistakable helped users reach value faster.</div>
+        <div class="final-gallery">
+            <img src="images/step1.png" alt="Final Yaware role-based onboarding UI">
+            <img src="images/step3.png" alt="Final Yaware time tracking activation UI">
+        </div>
+        <div class="prototype-label">Explore the interactive prototype</div>
+        <iframe style="border: 1px solid var(--color-border); border-radius: 16px; width: 100%; height: 600px;" src="https://embed.figma.com/design/zF1519uRTicy0dTAgkz1Ux/Untitled?node-id=75-65&embed-host=share" allowfullscreen></iframe>
+        <div><a href="mailto:Stasivskyj@gmail.com" class="btn-cta">Discuss a similar project &rarr;</a></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-block">
+            <h4>Contact</h4>
+            <a href="mailto:Stasivskyj@gmail.com">Stasivskyj@gmail.com</a>
+            <a href="tel:+4917686093880">+49 176 860 93 880</a>
+        </div>
+        
+        <div class="footer-block">
+            <h4>Socials</h4>
+            <a href="https://www.linkedin.com/in/leonidstasivskyi/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://t.me/Leonid_Stasivskyi" target="_blank" rel="noopener">Telegram · @Leonid_Stasivskyi</a>
+        </div>
+        
+        <div class="footer-block">
+            <h4>Location</h4>
+            <span>Berlin, Germany</span>
+        </div>
+    </footer>
+
+</body>
+</html>

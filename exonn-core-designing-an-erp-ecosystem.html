@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="A product design case study documenting the architecture and design of Exonn Core: a foundational B2B ERP ecosystem." name="description"/><title>Exonn Core ERP Ecosystem — Leonid Stasivskyi</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><style>
+:root{--color-bg:#fff;--color-card-bg:#FAF9F8;--color-text-main:#111;--color-text-muted:#666;--color-border:#E5E5E5;--color-accent:#059669;--font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--max-width:1200px}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{margin:0;background:var(--color-bg);color:var(--color-text-main);font:15px/1.65 var(--font-family)}h1,h2,h3,h4,p{margin:0}h1,h2,h3{line-height:1.18;letter-spacing:-.035em;font-weight:600}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #10b981;outline-offset:4px}p{color:var(--color-text-muted)}.shell{max-width:1200px;margin:auto;padding:0 24px}.readable{max-width:855px}.site-head{height:112px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--color-border)}.logo{font-size:17px;font-weight:600;letter-spacing:-.02em}.back{font-weight:500;border-bottom:1.5px solid #111;padding-bottom:3px;transition:.2s}.back:hover{color:var(--color-accent);border-color:var(--color-accent)}.eyebrow{font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#777}.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:center;padding:60px 0 48px}.hero-copy{min-width:0}.hero h1{font-size:clamp(37px,4.15vw,57px);margin:28px 0 25px;max-width:620px}.hero-description{font-size:clamp(16px,1.45vw,19px);line-height:1.6;max-width:575px}.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:29px}.pill{border:1px solid var(--color-border);background:#fafafa;color:#666;border-radius:9999px;padding:6px 13px;font-size:12px;white-space:nowrap}.hero-device{min-width:0}.hero-device img{display:block;width:100%;border-radius:12px;box-shadow:0 20px 40px rgba(17,17,17,.08);border:1px solid var(--color-border)}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding:0 0 22px}.metric strong{display:block;color:var(--color-accent);font-size:clamp(26px,2.9vw,38px);line-height:1.2;letter-spacing:-.055em;font-weight:600;white-space:nowrap}.metric span{font-size:12px;color:#666;display:block;margin-top:7px}.hero-note{padding-bottom:70px;border-bottom:1px solid var(--color-border)}.metrics{padding-bottom:50px;border-bottom:1px solid var(--color-border)}.metadata{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:30px 0;border-bottom:1px solid var(--color-border)}.meta-label{color:#888;font-size:11px;text-transform:uppercase;letter-spacing:.09em;font-weight:600;margin-bottom:6px}.meta-value{font-size:14px;font-weight:500}.section{padding:112px 0;border-bottom:1px solid var(--color-border);scroll-margin-top:25px}.section-intro{display:flex;flex-direction:column;gap:17px;margin-bottom:21px;align-items:stretch}.section-index{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:#777;display:block;line-height:1.5}.section-index span{color:var(--color-accent);margin-right:12px}.section h2{font-size:clamp(27px,2.75vw,38px);max-width:930px}.section-lead{font-size:16px;max-width:860px;margin:0 0 32px;line-height:1.8}.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{padding:25px;border:1px solid var(--color-border);border-radius:18px;background:var(--color-card-bg)}.card.white{background:#fff}.card .small-label{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#888;font-weight:600;margin-bottom:13px}.card h3{font-size:17px;margin-bottom:8px;letter-spacing:-.02em}.card p{font-size:13px;line-height:1.7}.highlight{color:var(--color-accent)}.scope{border-left:2px solid #059669;padding:15px 22px;background:var(--color-card-bg);border-radius:0 12px 12px 0;margin:25px 0;font-size:14px;color:#333}.footer{padding:72px 0 82px;display:flex;justify-content:space-between;align-items:center;gap:20px}.footer h2{font-size:28px;margin-bottom:8px}.footer p{font-size:14px}.button{background:#111;color:#fff;border-radius:9999px;padding:12px 22px;display:inline-flex;gap:9px;align-items:center;font-size:13px;font-weight:500;transition:.2s}.button:hover{background:#2a2a2a;transform:translateY(-2px)}
+
+/* Module Card Images & Features Tags */
+.module-card-img-wrapper {
+  width: 100%;
+  height: 340px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  background: #f4f4f5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+.module-card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  display: block;
+}
+.card-feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.card-feature-tags .tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: #555;
+  background: #f0f0f0;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+@media(max-width:980px){.hero{grid-template-columns:1fr 1fr;gap:0}.hero h1{font-size:40px}}
+@media(max-width:760px){.shell{padding:0 18px}.site-head{height:84px}.hero{grid-template-columns:1fr;padding:42px 0 28px;gap:18px}.hero h1{font-size:clamp(36px,8vw,50px);margin:20px 0}.metrics{grid-template-columns:1fr 1fr;gap:17px;padding-top:12px}.metric strong{font-size:30px}.metadata{grid-template-columns:1fr 1fr;gap:20px}.section{padding:70px 0}.grid-2,.grid-3{grid-template-columns:1fr}.footer{flex-direction:column;align-items:start}}
+
+/* Header menu dropdown */
+.site-head { gap: 22px; position: relative; overflow: visible; }
+.site-head .logo { margin-right: auto; }
+.header-menu { position: relative; z-index: 30; }
+.header-menu > summary { cursor: pointer; list-style: none; user-select: none; font-size: 13px; font-weight: 500; color: #666; padding: 10px 10px; border-radius: 8px; transition: color .2s ease, background-color .2s ease; white-space: nowrap; }
+.header-menu > summary::-webkit-details-marker { display: none; }
+.header-menu > summary::after { content: '⌄'; font-size: 17px; display: inline-block; margin-left: 9px; line-height: .7; vertical-align: 1px; transition: transform .2s ease; }
+.header-menu[open] > summary::after { transform: rotate(180deg); }
+.header-menu > summary:hover, .header-menu[open] > summary { color: #111; background: #FAF9F8; }
+.header-menu-panel { position: absolute; top: calc(100% + 10px); right: 0; width: 235px; padding: 8px; background: #fff; border: 1px solid var(--color-border); border-radius: 14px; box-shadow: 0 16px 50px rgba(17,17,17,.12); max-height: min(65vh, 420px); overflow-y: auto; }
+.header-menu-panel a { display:block; padding: 11px 12px; color: #555; border-radius: 7px; font-size: 13px; font-weight: 500; line-height: 1.3; }
+.header-menu-panel a:hover { background: #F3F3F3; color: var(--color-accent); }
+</style></head><body>
+
+<div class="shell">
+  <header class="site-head">
+    <a class="logo" href="https://leonid-stasivskyi.netlify.app/">Leonid Stasivskyi</a>
+    <details class="header-menu">
+      <summary>Case sections</summary>
+      <nav aria-label="Case study sections" class="header-menu-panel">
+        <a href="#overview">Overview</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#modules">ERP Modules</a>
+        <a href="#ui-showcase">UI Showcase</a>
+        <a href="#design-system">Design System</a>
+        <a href="#impact">Impact & Results</a>
+      </nav>
+    </details>
+    <a class="back" href="https://leonid-stasivskyi.netlify.app/">← Back to Portfolio</a>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section aria-labelledby="main-title" class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Product Design Case Study</div>
+        <h1 id="main-title">Exonn Core: Designing an ERP Ecosystem</h1>
+        <p class="hero-description">Building a unified digital core for business processes, resources, and operational analytics with a focus on scalability and seamless UX.</p>
+        <div aria-label="Project focus" class="pills">
+          <span class="pill">B2B SaaS</span>
+          <span class="pill">ERP Architecture</span>
+          <span class="pill">Design System</span>
+          <span class="pill">Complex Data UI</span>
+        </div>
+      </div>
+      <div class="hero-device">
+        <img src="images/Exonn_02.0_Dashboard_1.0_2.png" alt="Exonn Core Executive Dashboard">
+      </div>
+    </section>
+
+    <!-- METRICS STRIP -->
+    <section class="metrics">
+      <div class="metric">
+        <strong>-45%</strong>
+        <span>time spent on routine data operations</span>
+      </div>
+      <div class="metric">
+        <strong>100%</strong>
+        <span>cross-module data synchronization</span>
+      </div>
+      <div class="metric">
+        <strong>3x</strong>
+        <span>faster onboarding for new employees</span>
+      </div>
+      <div class="metric">
+        <strong>Zero</strong>
+        <span>interface fragmentation</span>
+      </div>
+    </section>
+
+    <!-- METADATA -->
+    <section class="metadata">
+      <div>
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Lead Product & UX/UI Designer</div>
+      </div>
+      <div>
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value">4 Months (Discovery & Core UI)</div>
+      </div>
+      <div>
+        <div class="meta-label">Domain</div>
+        <div class="meta-value">Enterprise Software / B2B SaaS</div>
+      </div>
+      <div>
+        <div class="meta-label">Stack</div>
+        <div class="meta-value">Figma, Design Tokens, React Flow</div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: OVERVIEW -->
+    <section id="overview" class="section">
+      <div class="section-intro">
+        <span class="section-index"><span>01</span> Context & Challenge</span>
+        <h2>Taming Enterprise Chaos: Why Exonn Core Was Needed</h2>
+      </div>
+      <p class="section-lead">Modern companies often struggle with fragmented digitalization: CRM in one place, warehouse management in another, and finances in a third. The lack of a single foundation leads to data silos and loss of control.</p>
+      
+      <div class="grid-2">
+        <div class="card">
+          <div class="small-label">Problem 01</div>
+          <h3>Information Silos</h3>
+          <p>Employees wasted hours manually transferring data between isolated tools, inevitably leading to human errors and reporting delays.</p>
+        </div>
+        <div class="card">
+          <div class="small-label">Problem 02</div>
+          <h3>Cognitive Overload</h3>
+          <p>Legacy enterprise software interfaces required lengthy training and forced users to perform dozens of redundant clicks for basic operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: ARCHITECTURE -->
+    <section id="architecture" class="section">
+      <div class="section-intro">
+        <span class="section-index"><span>02</span> Information Architecture</span>
+        <h2>Designing Information Architecture</h2>
+      </div>
+      <p class="section-lead">During the discovery phase, a strict hierarchy of ERP entities was established. We divided the global space into managerial domains while maintaining instant contextual transitions between them.</p>
+      
+      <div class="scope">
+        <b>Architectural Principle:</b> Every module of Exonn Core is designed around a «nested matrix» approach — from high-level stakeholder dashboards to deep tabular views for operators.
+      </div>
+
+      <div class="grid-3" style="margin-top: 32px;">
+        <div class="card white">
+          <div class="small-label">Layer 01</div>
+          <h3>Command Center</h3>
+          <p>Contextual widgets, critical business metric alerts, and quick actions for top management.</p>
+        </div>
+        <div class="card white">
+          <div class="small-label">Layer 02</div>
+          <h3>Domain Workspaces</h3>
+          <p>Specialized workspaces for logistics, finance, HR, and sales equipped with custom filters.</p>
+        </div>
+        <div class="card white">
+          <div class="small-label">Layer 03</div>
+          <h3>Universal Entity Hub</h3>
+          <p>Unified customer, deal, and product cards featuring change histories and deep relational links.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: MODULES -->
+    <section id="modules" class="section">
+      <div class="section-intro">
+        <span class="section-index"><span>03</span> Core Ecosystem</span>
+        <h2>Core Ecosystem Modules</h2>
+      </div>
+      <p class="section-lead">Exonn Core unifies key company business processes within a single, seamless interface.</p>
+
+      <div class="grid-2">
+        <div class="card white" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="small-label">MODULE A — DOCUMENTS & ACCOUNTING</div>
+            <h3>Accounting & Document Processing</h3>
+            <p>Dense primary documentation registries, column customization, inline editing, and rapid artifact search.</p>
+            
+            <div class="card-feature-tags">
+              <span class="tag">Data Grids</span>
+              <span class="tag">Column Config</span>
+              <span class="tag">Inline Edit</span>
+            </div>
+          </div>
+
+          <div class="module-card-img-wrapper">
+            <img src="images/Exonn_04.1_Buchungsbelege_Alle_Belege_1.0_2.png" alt="Accounting & Documents UI">
+          </div>
+        </div>
+
+        <div class="card white" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="small-label">MODULE B — INVENTORY & PRODUCT HUB</div>
+            <h3>Resource & Inventory Management</h3>
+            <p>Management of product nomenclature, attributes, sales categories, stock levels, and multichannel integrations.</p>
+            
+            <div class="card-feature-tags">
+              <span class="tag">Stock Tracking</span>
+              <span class="tag">Variants Matrix</span>
+              <span class="tag">Multi-Channel</span>
+            </div>
+          </div>
+
+          <div class="module-card-img-wrapper">
+            <img src="images/Exonn_05.2_Artikel_Stamm_1.0.png" alt="Inventory & Product Stamm UI">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: UI SHOWCASE -->
+    <section id="ui-showcase" class="section">
+      <div class="section-intro">
+        <span class="section-index"><span>04</span> UI Showcase</span>
+        <h2>Detailed Screen & State Breakdown</h2>
+      </div>
+      <p class="section-lead">Interface solutions for complex forms, product modifications management, marketplace synchronization, and inventory reservation.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 32px; margin-top: 32px;">
+        
+        <div class="card white" style="padding: 20px;">
+          <div class="small-label" style="margin-bottom: 12px;">UI Pattern 01 — Product Matrix & Variant Management</div>
+          <img src="images/Exonn_05.3_Artikel_Varianten_1.0.png" alt="Product Variants Grid UI" style="width: 100%; border-radius: 10px; border: 1px solid var(--color-border); display: block;">
+        </div>
+
+        <div class="card white" style="padding: 20px;">
+          <div class="small-label" style="margin-bottom: 12px;">UI Pattern 02 — Inventory Tracking & Warehouse Buffer Rules</div>
+          <img src="images/Exonn_05.2_Artikel_Lager_1.0.png" alt="Warehouse Reserve Rules UI" style="width: 100%; border-radius: 10px; border: 1px solid var(--color-border); display: block;">
+        </div>
+
+        <div class="card white" style="padding: 20px;">
+          <div class="small-label" style="margin-bottom: 12px;">UI Pattern 03 — Multi-Channel Marketplace Sync (Amazon)</div>
+          <img src="images/Exonn_05.7_Artikel_Amazon_1.0.png" alt="Amazon Marketplace Sync UI" style="width: 100%; border-radius: 10px; border: 1px solid var(--color-border); display: block;">
+        </div>
+
+        <div class="card white" style="padding: 20px;">
+          <div class="small-label" style="margin-bottom: 12px;">UI Pattern 04 — E-Commerce Channel Channel Settings (eBay)</div>
+          <img src="images/Exonn_05.8_Artikel_eBay_1.0.png" alt="eBay Integration Rules UI" style="width: 100%; border-radius: 10px; border: 1px solid var(--color-border); display: block;">
+        </div>
+
+        <div class="card white" style="padding: 20px;">
+          <div class="small-label" style="margin-bottom: 12px;">UI Pattern 05 — Advanced Item Attributes & Logistics Customs Data</div>
+          <img src="images/Exonn_05.1_Artikel_Erweitert_1.0.png" alt="Advanced Logistics Attributes UI" style="width: 100%; border-radius: 10px; border: 1px solid var(--color-border); display: block;">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 05: DESIGN SYSTEM -->
+    <section id="design-system" class="section">
+      <div class="section-intro">
+        <span class="section-index"><span>05</span> Scalable UI System</span>
+        <h2>Scalable Exonn UI Design System</h2>
+      </div>
+      <p class="section-lead">To support the endless expansion of the ERP ecosystem, a token-based component library was created in Figma, ensuring interface consistency across all complexity levels.</p>
+      
+      <div class="card white" style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="small-label">Design tokens & components</div>
+        <h3 style="font-size: 20px;">High-Density Interfaces for Handling Large Volumes of Data</h3>
+        <p>Specialized high-density data grids were developed with column customization support, inline editing, batch operations, and instant search. A strict status color system was implemented to reduce cognitive load.</p>
+      </div>
+
+      <!-- Full-Width Design System Image -->
+      <div style="width: 100%; margin-top: 24px; border-radius: 18px; border: 1px solid var(--color-border); overflow: hidden; background: var(--color-card-bg); box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);">
+        <img src="images/exonn-core-design-system-showcase.png" alt="Exonn UI Design System Tokens and Components" style="width: 100%; height: auto; display: block; object-fit: cover;">
+      </div>
+    </section>
+
+    <!-- SECTION 06: IMPACT -->
+    <section id="impact" class="section">
+      <div class="section-intro">
+        <span class="section-index"><span>06</span> Business Impact</span>
+        <h2>Implementation Results & Impact</h2>
+      </div>
+      <p class="section-lead">Designing Exonn Core transformed a fragmented set of tools into a powerful business asset for the company.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="small-label">Metric Alpha</div>
+          <h3>Processing Speed</h3>
+          <p>The time required to process client requests and generate closing documents was reduced by more than half.</p>
+        </div>
+        <div class="card">
+          <div class="small-label">Metric Beta</div>
+          <h3>Scalability</h3>
+          <p>The architecture enabled the seamless addition of new vertical modules without rewriting core interface patterns.</p>
+        </div>
+        <div class="card">
+          <div class="small-label">Metric Gamma</div>
+          <h3>User Satisfaction</h3>
+          <p>The Customer Satisfaction (CSAT) score among operational departments increased from 62% to 91%.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <footer class="footer">
+      <div>
+        <h2>Ready to discuss your next product?</h2>
+        <p>Get in touch with me to build ambitious SaaS and ERP solutions.</p>
+      </div>
+      <a class="button" href="https://leonid-stasivskyi.netlify.app/#contact">Get in Touch →</a>
+    </footer>
+  </main>
+</div>
+
+</body></html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Leonid Stasivskyi | B2B SaaS Product Designer</title>
+<style>
+        /* Подключение единого шрифта Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        /* CSS Reset & Variable Definitions */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-bg: #FFFFFF;
+            --color-text-main: #111111;
+            --color-text-muted: #666666;
+            --color-accent: #059669;
+            --color-border: #E5E5E5;
+            --color-card-bg: #FAF9F8;
+            
+            --font-family: 'Inter', -apple-system, sans-serif;
+            --max-width: 1200px;
+        }
+
+        html {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-family);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 5rem 1.5rem;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        /* Header Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-header {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #FFFFFF;
+            background-color: #111111;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            text-decoration: none;
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .btn-header:hover {
+            color: #FFFFFF;
+            background-color: #2a2a2a;
+        }
+
+        .btn-header:active {
+            transform: scale(0.98);
+        }
+
+        /* Pulsing Status Dot */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            position: relative;
+            display: inline-block;
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: 12px;
+            height: 12px;
+            background-color: rgba(16, 185, 129, 0.4);
+            border-radius: 50%;
+            animation: pulse 2s infinite ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-bottom: 8rem;
+            max-width: 900px;
+        }
+
+        .location-badge {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0;
+        }
+
+        h1 {
+            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: var(--color-text-main);
+        }
+
+        .hero-title {
+            margin-bottom: 2rem;
+        }
+
+        .hero-title h1 {
+            margin-bottom: 0.35rem;
+        }
+
+        .hero-specialization {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--color-text-main);
+        }
+
+        .subtitle {
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            font-weight: 400;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            max-width: 800px;
+            letter-spacing: -0.01em;
+            margin-bottom: 0;
+        }
+
+        .process {
+            margin-top: 0.35rem;
+            font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+            font-weight: 400;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-bottom: 8rem;
+        }
+
+        .section-header {
+            font-size: 0.875rem;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        /* Карточка с горизонтальным расположением и выравниванием по верху */
+        .card {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; /* Поднимает весь текстовый блок к верхнему краю превью */
+            gap: 3rem;
+            background-color: var(--color-bg);
+            transition: transform 0.2s ease;
+        }
+
+        .card-image {
+            flex: 1 1 50%;
+            width: 50%;
+            background-color: var(--color-card-bg);
+            aspect-ratio: 16 / 9;
+            max-height: 580px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            margin-bottom: 0;
+            overflow: hidden;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        .card:hover .card-image {
+            border-color: #111111;
+            transform: translateY(-2px);
+        }
+
+        /* Текстовый блок выровнен строго по верху */
+        .card-content {
+            flex: 1 1 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 0;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-top: 0;
+            margin-bottom: 0.375rem;
+        }
+
+        .metric {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            font-style: normal;
+            margin-bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .metric::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-main);
+            background-color: #FFFFFF;
+            border: 1px solid var(--color-border);
+            border-radius: 9999px;
+            padding: 0.625rem 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            width: fit-content;
+            transition: all 0.2s ease;
+        }
+
+        .btn-link:hover {
+            color: var(--color-text-main);
+            border-color: #111111;
+            background-color: #F3F3F3;
+        }
+
+        .btn-link span {
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-link:hover span {
+            transform: translateX(3px);
+        }
+
+        .btn-link:active {
+            transform: scale(0.98);
+        }
+
+        /* Footer */
+        footer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-block h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-muted);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-block a, 
+        .footer-block span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--color-text-main);
+        }
+
+        .footer-block a:hover {
+            color: var(--color-accent);
+        }
+    
+        .subtitle-line {
+            display: block;
+            white-space: nowrap;
+        }
+
+        .nowrap {
+            white-space: nowrap;
+        }
+
+        /* Мобильная адаптивность */
+        @media (max-width: 860px) {
+            .card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1.5rem;
+            }
+            .card-image {
+                width: 100%;
+                flex: none;
+            }
+            .card-content {
+                width: 100%;
+                flex: none;
+            }
+            .subtitle-line {
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .hero-specialization {
+                font-size: 1.5rem;
+            }
+            .card-title {
+                font-size: 1.35rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Header -->
+<header>
+    <div class="logo">Leonid Stasivskyi</div>
+    <a class="btn-header" href="mailto:Stasivskyj@gmail.com">
+        <span class="status-dot"></span>
+        Let's work together
+    </a>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="location-badge">
+        Available for full-time Product Designer roles · Berlin / Remote
+    </div>
+    <div class="hero-title">
+        <h1>Product Designer</h1>
+        <div class="hero-specialization">B2B SaaS · 0-to-1 · Growth</div>
+    </div>
+    <p class="subtitle">
+        <span class="subtitle-line">Combining product discovery, experimentation, data, and <span class="nowrap">AI-assisted</span> workflows</span>
+        <span class="subtitle-line">to turn user problems into measurable product and business outcomes.</span>
+    </p>
+    <div class="process">My approach: Problem → Hypothesis → Design → Experiment → Data → Iteration</div>
+</section>
+
+<!-- Selected Work Section -->
+<section class="projects-section" id="projects">
+    <div class="section-header">Selected Work</div>
+    <div class="grid">
+        
+        <!-- Project 1: Exonn Core ERP Ecosystem -->
+        <article class="card">
+            <div class="card-image">
+                <img alt="Exonn Core ERP Ecosystem Interface — Executive Dashboard and High-Density UI" src="images/exonn-core-designing-an-erp-ecosystem.png"/>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Exonn Core: Designing an ERP Ecosystem</h3>
+                <div class="metric">B2B SaaS · ERP Architecture · Complex Data UI</div>
+                <p class="card-description">Designing a modular B2B ERP system that unifies accounting, stock management, and multi-channel sales into a dense, scalable ecosystem.</p>
+                <a class="btn-link" href="exonn-core.html">View case study <span>→</span></a>
+            </div>
+        </article>
+
+        <!-- Project 2: Yaware Onboarding -->
+        <article class="card">
+            <div class="card-image">
+                <img alt="Yaware SaaS Platform Dashboard Interface" src="images/yaware-preview.png"/>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Yaware: Reducing Time-to-Value by 65%</h3>
+                <div class="metric">Result: -65% Time-to-Value · +18% Trial-to-Paid</div>
+                <p class="card-description">Redesigned onboarding for a B2B SaaS time-tracking platform, reducing activation friction and helping users reach value faster.</p>
+                <a class="btn-link" href="yaware-onboarding.html">View case study <span>→</span></a>
+            </div>
+        </article>
+
+        <!-- Project 3: Product & UI Design Collection -->
+        <article class="card">
+            <div class="card-image">
+                <img alt="Selected Product and UI Work — mobile apps, SaaS dashboards, web products, and design systems" src="images/selected-product-ui-work.png"/>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Product &amp; UI Design Collection</h3>
+                <div class="metric">Mobile · Web · SaaS · Design Systems</div>
+                <p class="card-description">A selection of mobile apps, SaaS interfaces, dashboards, landing pages, and scalable design systems.</p>
+                <a class="btn-link" href="product-ui-design-collection.html">Explore work <span>→</span></a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- Footer Section -->
+<section class="about">
+    <footer>
+        <div class="footer-block">
+            <h4>Contact</h4>
+            <a href="mailto:Stasivskyj@gmail.com">Stasivskyj@gmail.com</a>
+            <a href="tel:+4917686093880">+49 176 860 93 880</a>
+        </div>
+        <div class="footer-block">
+            <h4>Socials</h4>
+            <a href="https://linkedin.com/in/" rel="noopener" target="_blank">LinkedIn</a>
+            <a href="https://t.me/" rel="noopener" target="_blank">Telegram</a>
+        </div>
+        <div class="footer-block">
+            <h4>Location</h4>
+            <span>Berlin, Germany</span>
+        </div>
+    </footer>
+</section>
+</body>
+</html>
